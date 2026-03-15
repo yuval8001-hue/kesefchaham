@@ -3,74 +3,52 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>כספחכם</title>
+<title>כסף חכם</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{min-height:100%;direction:rtl;font-family:'Heebo',sans-serif;background:#09101f;color:#e2e8f0;}
-::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:#1e2a45;border-radius:4px;}
-.app{min-height:100vh;display:flex;flex-direction:column;}
-.header{background:linear-gradient(180deg,#0d1628,#0a1220);border-bottom:1px solid rgba(255,255,255,0.06);padding:16px 20px 0;}
+body{font-family:'Heebo',sans-serif;background:#09101f;color:#e2e8f0;direction:rtl;min-height:100vh;}
+.header{background:linear-gradient(180deg,#0d1628,#0a1220);border-bottom:1px solid rgba(255,255,255,0.06);padding:16px 20px 0;position:sticky;top:0;z-index:10;}
 .header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
-.logo{font-size:22px;font-weight:800;letter-spacing:-1px;}
-.logo span{color:#38bdf8;}
-.income-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.income-lbl{font-size:12px;color:#64748b;font-weight:600;}
-.month-badge{background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;}
+.logo{font-size:22px;font-weight:800;color:#e2e8f0;}
+.logo b{color:#38bdf8;font-weight:800;}
 .tabs{display:flex;gap:2px;overflow-x:auto;}
-.tab{padding:9px 18px;border-radius:10px 10px 0 0;font-size:14px;font-weight:600;cursor:pointer;border:none;background:transparent;color:#64748b;font-family:'Heebo',sans-serif;white-space:nowrap;transition:color .15s;}
-.tab:hover{color:#94a3b8;}
-.tab.active{background:#09101f;color:#38bdf8;border-top:2px solid #38bdf8;}
-.screen{display:none;}.screen.active{display:block;}
-.content{flex:1;padding:22px 20px;max-width:900px;width:100%;margin:0 auto;}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.tab{padding:9px 18px;border-radius:10px 10px 0 0;font-size:14px;font-weight:600;cursor:pointer;border:none;background:transparent;color:#64748b;font-family:'Heebo',sans-serif;white-space:nowrap;border-top:2px solid transparent;}
+.tab.on{background:#09101f;color:#38bdf8;border-top-color:#38bdf8;}
+.content{padding:22px 20px;max-width:900px;margin:0 auto;}
+.screen{display:none;}.screen.on{display:block;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;}
 .card{background:linear-gradient(135deg,#0f1a2e,#0d1525);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;}
 .ct{font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
 .cv{font-size:26px;font-weight:800;letter-spacing:-1px;}
 .cs{font-size:12px;color:#475569;margin-top:4px;}
 .green{color:#34d399;}.red{color:#fb7185;}.blue{color:#38bdf8;}
-.sec{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
-.sec::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
-.btn{padding:9px 16px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Heebo',sans-serif;transition:all .2s;}
-.btn-p{background:linear-gradient(135deg,#38bdf8,#0ea5e9);color:#09101f;}
-.btn-p:hover{box-shadow:0 4px 16px rgba(56,189,248,0.3);}
-.btn-d{background:rgba(251,113,133,0.12);color:#fb7185;border:1px solid rgba(251,113,133,0.25);}
-.btn-g{background:rgba(255,255,255,0.07);color:#94a3b8;border:none;}
-.btn-sm{padding:5px 10px;font-size:12px;}
-.inp{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:9px 12px;color:#e2e8f0;font-size:14px;font-family:'Heebo',sans-serif;outline:none;transition:border .2s;}
-.inp:focus{border-color:rgba(56,189,248,0.45);background:rgba(56,189,248,0.04);}
+.sec{font-size:16px;font-weight:700;margin-bottom:16px;color:#e2e8f0;}
+.inp{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 12px;color:#e2e8f0;font-size:14px;font-family:'Heebo',sans-serif;outline:none;}
+.inp:focus{border-color:rgba(56,189,248,0.5);}
 .lbl{font-size:12px;color:#475569;font-weight:600;margin-bottom:4px;display:block;}
-.fcard{background:linear-gradient(135deg,#0f1a2e,#0d1525);border:1px solid rgba(56,189,248,0.2);border-radius:16px;padding:18px;margin-bottom:20px;}
-.fgrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:10px;align-items:end;}
+.btn-p{padding:9px 16px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:linear-gradient(135deg,#38bdf8,#0ea5e9);color:#09101f;font-family:'Heebo',sans-serif;}
+.btn-g{padding:7px 14px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;background:rgba(255,255,255,0.07);color:#94a3b8;border:none;font-family:'Heebo',sans-serif;}
+.btn-d{padding:5px 10px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:rgba(251,113,133,0.12);color:#fb7185;border:1px solid rgba(251,113,133,0.25);font-family:'Heebo',sans-serif;}
+.btn-sm{padding:5px 10px;font-size:12px;}
+.pbar{background:rgba(255,255,255,0.07);border-radius:100px;height:7px;overflow:hidden;margin-top:2px;}
+.pfill{height:100%;border-radius:100px;transition:width .5s;}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:600;}
+.chip{padding:4px 11px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid transparent;background:rgba(255,255,255,0.06);font-family:'Heebo',sans-serif;color:#e2e8f0;}
+.chip.on{background:rgba(56,189,248,.14);border-color:rgba(56,189,248,.38);color:#38bdf8;}
 .tbl{width:100%;border-collapse:collapse;}
 .tbl th{padding:9px 12px;text-align:right;font-size:11px;font-weight:700;color:#374151;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.05);}
 .tbl td{padding:11px 12px;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.03);}
-.tbl tr:hover td{background:rgba(255,255,255,0.015);}
-.tbl tr:last-child td{border-bottom:none;}
-.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:600;}
-.pbar{background:rgba(255,255,255,0.07);border-radius:100px;height:7px;overflow:hidden;}
-.pfill{height:100%;border-radius:100px;transition:width .5s ease;}
 .gc{background:linear-gradient(135deg,#0f1a2e,#0d1525);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;}
 .goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:100;display:flex;align-items:center;justify-content:center;}
 .modal{background:#0f1a2e;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:24px;width:400px;max-width:95vw;max-height:90vh;overflow-y:auto;}
-.modal-title{font-size:18px;font-weight:700;margin-bottom:18px;}
-.mfoot{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;}
-.fg{margin-bottom:12px;}
-.srow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
-.srow:last-child{border-bottom:none;}
 .sumbox{background:rgba(56,189,248,0.05);border:1px solid rgba(56,189,248,0.18);border-radius:14px;padding:16px;margin-top:16px;}
-.sumbox-t{font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:8px;}
-.chip{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.06);border-radius:20px;padding:4px 11px;font-size:12px;cursor:pointer;border:1px solid transparent;transition:all .15s;font-family:'Heebo',sans-serif;}
-.chip.on{background:rgba(56,189,248,.14);border-color:rgba(56,189,248,.38);color:#38bdf8;}
-.empty{text-align:center;padding:40px 20px;color:#374151;}
-.empty .ei{font-size:36px;margin-bottom:10px;}
-.icon-pick span{font-size:20px;cursor:pointer;padding:5px;border-radius:8px;display:inline-block;}
-.icon-pick span.sel{background:rgba(56,189,248,0.18);outline:1px solid #38bdf8;}
-.color-pick div{width:26px;height:26px;border-radius:50%;cursor:pointer;display:inline-block;}
-.color-pick div.sel{outline:3px solid white;}
-.chart-wrap{width:100%;overflow:hidden;}
+.empty{text-align:center;padding:40px;color:#374151;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:10px;align-items:end;}
+.month-badge{background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;}
+.fg{margin-bottom:12px;}
 @media(max-width:640px){
   .g2,.g3,.goals-grid{grid-template-columns:1fr;}
   .fgrid{grid-template-columns:1fr 1fr;}
@@ -79,570 +57,387 @@ html,body{min-height:100%;direction:rtl;font-family:'Heebo',sans-serif;backgroun
 </style>
 </head>
 <body>
-<div id="root"></div>
 
-<!-- Load libs -->
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<div class="header">
+  <div class="header-top">
+    <div class="logo">כסף <b>חכם</b></div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span style="font-size:12px;color:#64748b;font-weight:600;">הכנסה חודשית:</span>
+      <input class="inp" id="incomeInput" type="number" value="10000" style="width:110px;font-size:13px;padding:6px 10px;" oninput="updateIncome(this.value)"/>
+      <div class="month-badge" id="monthBadge"></div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="showTab('dashboard',this)">▦ דשבורד</button>
+    <button class="tab" onclick="showTab('expenses',this)">🧾 הוצאות</button>
+    <button class="tab" onclick="showTab('goals',this)">🎯 מטרות</button>
+    <button class="tab" onclick="showTab('report',this)">📊 דוח</button>
+  </div>
+</div>
 
-<script type="text/babel" data-presets="react">
-// ── Wait for Recharts to load ──
-const {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, Legend
-} = window.Recharts;
+<div class="content">
+  <div id="screen-dashboard" class="screen on"></div>
+  <div id="screen-expenses" class="screen"></div>
+  <div id="screen-goals" class="screen"></div>
+  <div id="screen-report" class="screen"></div>
+</div>
 
-const { useState, useCallback } = React;
+<div id="modal-overlay" class="overlay" style="display:none;" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div id="modal-content"></div>
+  </div>
+</div>
 
-// ── LOCAL STORAGE ──
-function useLS(key, def) {
-  const [val, setVal] = useState(() => {
-    try {
-      const s = localStorage.getItem(key);
-      return s ? JSON.parse(s) : def;
-    } catch { return def; }
-  });
-  const set = useCallback((v) => {
-    setVal(prev => {
-      const r = typeof v === "function" ? v(prev) : v;
-      try { localStorage.setItem(key, JSON.stringify(r)); } catch {}
-      return r;
-    });
-  }, [key]);
-  return [val, set];
-}
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
 // ── DATA ──
-const CATS = [
-  {n:"מזון",       i:"🛒", c:"#4ECDC4"},
-  {n:"תחבורה",     i:"🚗", c:"#45B7D1"},
-  {n:"בידור",      i:"🎬", c:"#F7DC6F"},
-  {n:"ביגוד",      i:"👕", c:"#F1948A"},
-  {n:"בריאות",     i:"💊", c:"#C39BD3"},
-  {n:"שכירות",     i:"🏠", c:"#F0A500"},
-  {n:"טכנולוגיה",  i:"💻", c:"#74B9FF"},
-  {n:"השקעות",     i:"📈", c:"#55EFC4"},
-  {n:"אחר",        i:"📦", c:"#95A5A6"},
+const CATS=[
+  {n:"מזון",i:"🛒",c:"#4ECDC4"},{n:"תחבורה",i:"🚗",c:"#45B7D1"},
+  {n:"בידור",i:"🎬",c:"#F7DC6F"},{n:"ביגוד",i:"👕",c:"#F1948A"},
+  {n:"בריאות",i:"💊",c:"#C39BD3"},{n:"שכירות",i:"🏠",c:"#F0A500"},
+  {n:"טכנולוגיה",i:"💻",c:"#74B9FF"},{n:"השקעות",i:"📈",c:"#55EFC4"},
+  {n:"אחר",i:"📦",c:"#95A5A6"}
 ];
-const GOALS0 = [
-  {id:1, name:"קרן חירום",      target:30000,  saved:10000, icon:"🛡️", color:"#4ECDC4"},
-  {id:2, name:"הון עצמי לדירה", target:300000, saved:30000, icon:"🏠",  color:"#45B7D1"},
-  {id:3, name:"תיק השקעות",     target:100000, saved:30000, icon:"📈",  color:"#55EFC4"},
-  {id:4, name:"חופשה",          target:15000,  saved:2000,  icon:"✈️",  color:"#F7DC6F"},
-  {id:5, name:"רכב",            target:80000,  saved:5000,  icon:"🚗",  color:"#F1948A"},
-];
-const EXP0 = [
-  {id:1, date:"2026-03-01", description:"סופרמרקט", category:"מזון",     amount:350,  month:"2026-03"},
-  {id:2, date:"2026-03-02", description:"דלק",       category:"תחבורה",  amount:180,  month:"2026-03"},
-  {id:3, date:"2026-03-05", description:"מסעדה",     category:"בידור",   amount:120,  month:"2026-03"},
-  {id:4, date:"2026-03-01", description:"שכירות",    category:"שכירות",  amount:2500, month:"2026-03"},
-];
-const MONTHS = ["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"];
-const ICONS_LIST = ["🎯","✈️","🚗","🏠","📈","🛡️","💻","🎓","🏋️","🐕","💍","🎸","⛵","🏖️","🧳","📷","🎮","🍕"];
-const COLORS_LIST = ["#38bdf8","#4ECDC4","#34d399","#fbbf24","#fb7185","#c084fc","#f97316","#F0A500","#94a3b8"];
+const MONTHS=["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"];
+const ICONS=["🎯","✈️","🚗","🏠","📈","🛡️","💻","🎓","🏋️","🐕","💍","🎸","⛵","🏖️","🧳","📷","🎮","🍕"];
+const COLS=["#38bdf8","#4ECDC4","#34d399","#fbbf24","#fb7185","#c084fc","#f97316","#F0A500","#94a3b8"];
 
-const fmt = n => "₪" + Number(n).toLocaleString("he-IL", {maximumFractionDigits:0});
-const catColor = n => CATS.find(c=>c.n===n)?.c || "#95A5A6";
-const catIcon  = n => CATS.find(c=>c.n===n)?.i || "📦";
-const nowMonth = () => new Date().toISOString().slice(0,7);
-const today    = () => new Date().toISOString().slice(0,10);
+const fmt=n=>"₪"+Number(n).toLocaleString("he-IL",{maximumFractionDigits:0});
+const catC=n=>CATS.find(c=>c.n===n)?.c||"#95A5A6";
+const catI=n=>CATS.find(c=>c.n===n)?.i||"📦";
+const nowM=()=>new Date().toISOString().slice(0,7);
+const today=()=>new Date().toISOString().slice(0,10);
 
-// ── TOOLTIP STYLE ──
-const ttStyle = {background:"#0f1a2e", border:"1px solid #1e2a45", borderRadius:10, color:"#e2e8f0", fontSize:13};
+// ── STATE ──
+let income = +load("kc_income","10000");
+let expenses = load("kc_exp",[
+  {id:1,date:"2026-03-01",desc:"סופרמרקט",cat:"מזון",amount:350,month:"2026-03"},
+  {id:2,date:"2026-03-02",desc:"דלק",cat:"תחבורה",amount:180,month:"2026-03"},
+  {id:3,date:"2026-03-05",desc:"מסעדה",cat:"בידור",amount:120,month:"2026-03"},
+  {id:4,date:"2026-03-01",desc:"שכירות",cat:"שכירות",amount:2500,month:"2026-03"},
+]);
+let goals = load("kc_goals",[
+  {id:1,name:"קרן חירום",target:30000,saved:10000,icon:"🛡️",color:"#4ECDC4"},
+  {id:2,name:"הון עצמי לדירה",target:300000,saved:30000,icon:"🏠",color:"#45B7D1"},
+  {id:3,name:"תיק השקעות",target:100000,saved:30000,icon:"📈",color:"#55EFC4"},
+  {id:4,name:"חופשה",target:15000,saved:2000,icon:"✈️",color:"#F7DC6F"},
+  {id:5,name:"רכב",target:80000,saved:5000,icon:"🚗",color:"#F1948A"},
+]);
+let filterMonth=nowM(), filterCat="הכל";
+let chartPie=null, chartBar=null;
 
-// ════════════════════════════════════════
-// DASHBOARD
-// ════════════════════════════════════════
-function Dashboard({expenses, goals, income}) {
-  const m = nowMonth();
-  const mExp = expenses.filter(e => e.month === m);
-  const total = mExp.reduce((s,e) => s + Number(e.amount), 0);
-  const inc = Number(income) || 0;
-  const saved = Math.max(0, inc - total);
-  const pct = inc > 0 ? Math.round((saved/inc)*100) : 0;
-  const now = new Date();
-  const ml = MONTHS[now.getMonth()] + " " + now.getFullYear();
+// ── STORAGE ──
+function load(k,def){try{const s=localStorage.getItem(k);return s?JSON.parse(s):def;}catch{return def;}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
 
-  const topC = CATS
-    .map(c => ({...c, total: mExp.filter(e=>e.category===c.n).reduce((s,e)=>s+Number(e.amount),0)}))
-    .filter(c => c.total > 0)
-    .sort((a,b) => b.total - a.total)
-    .slice(0,4);
+// ── INIT ──
+window.onload=()=>{
+  document.getElementById("incomeInput").value=income;
+  document.getElementById("monthBadge").textContent="📅 "+MONTHS[new Date().getMonth()]+" "+new Date().getFullYear();
+  renderAll();
+};
 
-  return (
-    <div>
-      <div className="sec">סיכום {ml}</div>
-      <div className="g3" style={{marginBottom:16}}>
-        <div className="card">
-          <div className="ct">הכנסה חודשית</div>
-          <div className="cv green">{fmt(inc)}</div>
-          <div className="cs">נטו לאחר מס</div>
-        </div>
-        <div className="card">
-          <div className="ct">הוצאות החודש</div>
-          <div className="cv red">{fmt(total)}</div>
-          <div className="cs">{mExp.length} עסקאות</div>
-        </div>
-        <div className="card">
-          <div className="ct">נחסך החודש</div>
-          <div className="cv green">{fmt(saved)}</div>
-          <div className="cs">{pct}% מההכנסה</div>
-        </div>
-      </div>
+function updateIncome(v){income=+v;save("kc_income",v);renderAll();}
 
-      <div className="g2">
-        <div className="card">
-          <div className="ct">הוצאות לפי קטגוריה</div>
-          {topC.length > 0 ? topC.map(c => (
-            <div key={c.n} style={{marginBottom:12}}>
-              <div style={{display:"flex",justifyContent:"space-between",marginBottom:5,fontSize:13}}>
-                <span>{c.i} {c.n}</span>
-                <span style={{fontWeight:700}}>{fmt(c.total)}</span>
-              </div>
-              <div className="pbar">
-                <div className="pfill" style={{width: total>0?`${(c.total/total)*100}%`:"0%", background:c.c}}/>
-              </div>
-            </div>
-          )) : <div className="empty"><div className="ei">📊</div><p>אין הוצאות החודש</p></div>}
-        </div>
-
-        <div className="card">
-          <div className="ct">מטרות — התקדמות</div>
-          {goals.slice(0,5).map(g => {
-            const p = Math.min(100, Math.round((g.saved/g.target)*100));
-            return (
-              <div key={g.id} style={{marginBottom:12}}>
-                <div style={{display:"flex",justifyContent:"space-between",marginBottom:5,fontSize:13}}>
-                  <span>{g.icon} {g.name}</span>
-                  <span style={{color:g.color,fontWeight:700}}>{p}%</span>
-                </div>
-                <div className="pbar">
-                  <div className="pfill" style={{width:`${p}%`, background:g.color}}/>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
+function showTab(name,btn){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
+  document.getElementById("screen-"+name).classList.add("on");
+  btn.classList.add("on");
+  renderAll();
 }
 
-// ════════════════════════════════════════
-// EXPENSES
-// ════════════════════════════════════════
-function Expenses({expenses, setExpenses}) {
-  const [form, setForm] = useState({date:today(), description:"", category:"מזון", amount:""});
-  const [fm, setFm] = useState(nowMonth());
-  const [fc, setFc] = useState("הכל");
-
-  const months = [...new Set([nowMonth(), ...expenses.map(e=>e.month)])].sort().reverse();
-  const mExp = expenses.filter(e => e.month === fm);
-  const filtered = fc === "הכל" ? mExp : mExp.filter(e => e.category === fc);
-  const total = filtered.reduce((s,e) => s + Number(e.amount), 0);
-
-  const add = () => {
-    if (!form.description.trim() || !form.amount || isNaN(form.amount)) return;
-    setExpenses(p => [...p, {...form, id:Date.now(), month:form.date.slice(0,7), amount:Number(form.amount)}]);
-    setForm(f => ({...f, description:"", amount:""}));
-  };
-
-  return (
-    <div>
-      <div className="fcard">
-        <div className="sec" style={{marginBottom:14}}>הוסף הוצאה</div>
-        <div className="fgrid">
-          <div>
-            <label className="lbl">תאריך</label>
-            <input className="inp" type="date" value={form.date}
-              onChange={e => setForm(f=>({...f,date:e.target.value}))}/>
-          </div>
-          <div>
-            <label className="lbl">תיאור</label>
-            <input className="inp" type="text" placeholder="סופרמרקט..." value={form.description}
-              onChange={e => setForm(f=>({...f,description:e.target.value}))}/>
-          </div>
-          <div>
-            <label className="lbl">קטגוריה</label>
-            <select className="inp" value={form.category}
-              onChange={e => setForm(f=>({...f,category:e.target.value}))}>
-              {CATS.map(c => <option key={c.n} value={c.n}>{c.i} {c.n}</option>)}
-            </select>
-          </div>
-          <div>
-            <label className="lbl">סכום ₪</label>
-            <input className="inp" type="number" placeholder="0" value={form.amount}
-              onChange={e => setForm(f=>({...f,amount:e.target.value}))}
-              onKeyDown={e => e.key==="Enter" && add()}/>
-          </div>
-          <button className="btn btn-p" onClick={add} style={{height:42}}>+ הוסף</button>
-        </div>
-      </div>
-
-      <div style={{display:"flex",gap:10,marginBottom:14,flexWrap:"wrap",alignItems:"center"}}>
-        <select className="inp" value={fm} onChange={e=>setFm(e.target.value)}
-          style={{width:"auto",minWidth:140}}>
-          {months.map(m => {
-            const [y,mo] = m.split("-");
-            return <option key={m} value={m}>{MONTHS[parseInt(mo)-1]} {y}</option>;
-          })}
-        </select>
-        <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-          {["הכל",...CATS.map(c=>c.n)].map(cat => (
-            <button key={cat} className={`chip ${fc===cat?"on":""}`} onClick={()=>setFc(cat)}>
-              {cat!=="הכל" && catIcon(cat)} {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="card">
-        {filtered.length === 0
-          ? <div className="empty"><div className="ei">🧾</div><p>אין הוצאות</p></div>
-          : (
-            <table className="tbl">
-              <thead>
-                <tr><th>תאריך</th><th>תיאור</th><th>קטגוריה</th><th>סכום</th><th></th></tr>
-              </thead>
-              <tbody>
-                {filtered.sort((a,b)=>b.date.localeCompare(a.date)).map(e => (
-                  <tr key={e.id}>
-                    <td style={{color:"#475569",fontSize:13}}>
-                      {e.date.slice(5).split("-").reverse().join("/")}
-                    </td>
-                    <td style={{fontWeight:500}}>{e.description}</td>
-                    <td>
-                      <span className="badge" style={{background:catColor(e.category)+"22",color:catColor(e.category)}}>
-                        {catIcon(e.category)} {e.category}
-                      </span>
-                    </td>
-                    <td style={{fontWeight:700,color:"#fb7185"}}>{fmt(e.amount)}</td>
-                    <td>
-                      <button className="btn btn-d btn-sm"
-                        onClick={()=>setExpenses(p=>p.filter(x=>x.id!==e.id))}>✕</button>
-                    </td>
-                  </tr>
-                ))}
-                <tr>
-                  <td colSpan={3} style={{fontWeight:700,paddingTop:14,fontSize:13,color:"#64748b"}}>סה"כ</td>
-                  <td style={{fontWeight:800,fontSize:15,color:"#fb7185",paddingTop:14}}>{fmt(total)}</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          )
-        }
-      </div>
-    </div>
-  );
+function renderAll(){
+  renderDashboard();
+  renderExpenses();
+  renderGoals();
+  renderReport();
 }
 
-// ════════════════════════════════════════
-// GOALS
-// ════════════════════════════════════════
-function Goals({goals, setGoals}) {
-  const [showAdd, setShowAdd] = useState(false);
-  const [depId, setDepId] = useState(null);
-  const [depAmt, setDepAmt] = useState("");
-  const [ng, setNg] = useState({name:"", target:"", saved:"0", icon:"🎯", color:"#38bdf8"});
+// ── DASHBOARD ──
+function renderDashboard(){
+  const m=nowM(), mExp=expenses.filter(e=>e.month===m);
+  const total=mExp.reduce((s,e)=>s+e.amount,0);
+  const saved=Math.max(0,income-total);
+  const pct=income>0?Math.round((saved/income)*100):0;
+  const topC=CATS.map(c=>({...c,tot:mExp.filter(e=>e.cat===c.n).reduce((s,e)=>s+e.amount,0)})).filter(c=>c.tot>0).sort((a,b)=>b.tot-a.tot).slice(0,4);
 
-  const doDep = (id) => {
-    if (!depAmt || isNaN(depAmt)) return;
-    setGoals(p => p.map(g => g.id===id ? {...g, saved:g.saved+Number(depAmt)} : g));
-    setDepAmt(""); setDepId(null);
-  };
+  let catHtml=topC.length>0?topC.map(c=>`
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:13px;"><span>${c.i} ${c.n}</span><span style="font-weight:700;">${fmt(c.tot)}</span></div>
+      <div class="pbar"><div class="pfill" style="width:${total>0?(c.tot/total)*100:0}%;background:${c.c};"></div></div>
+    </div>`).join(""):`<div class="empty">אין הוצאות החודש</div>`;
 
-  const addGoal = () => {
-    if (!ng.name || !ng.target) return;
-    setGoals(p => [...p, {...ng, id:Date.now(), target:Number(ng.target), saved:Number(ng.saved)}]);
-    setNg({name:"", target:"", saved:"0", icon:"🎯", color:"#38bdf8"});
-    setShowAdd(false);
-  };
+  let goalsHtml=goals.slice(0,5).map(g=>{
+    const p=Math.min(100,Math.round((g.saved/g.target)*100));
+    return `<div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:13px;"><span>${g.icon} ${g.name}</span><span style="color:${g.color};font-weight:700;">${p}%</span></div>
+      <div class="pbar"><div class="pfill" style="width:${p}%;background:${g.color};"></div></div>
+    </div>`;}).join("");
 
-  const ts = goals.reduce((s,g)=>s+g.saved,0);
-  const tt = goals.reduce((s,g)=>s+g.target,0);
-
-  return (
-    <div>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}}>
-        <div>
-          <div style={{fontSize:12,color:"#64748b",marginBottom:3}}>סה"כ נחסך</div>
-          <div style={{fontSize:20,fontWeight:800,color:"#34d399"}}>
-            {fmt(ts)} <span style={{fontSize:13,color:"#475569",fontWeight:400}}>מתוך {fmt(tt)}</span>
-          </div>
-        </div>
-        <button className="btn btn-p" onClick={()=>setShowAdd(true)}>+ מטרה חדשה</button>
-      </div>
-
-      <div className="goals-grid">
-        {goals.map(g => {
-          const p = Math.min(100, Math.round((g.saved/g.target)*100));
-          return (
-            <div key={g.id} className="gc">
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
-                <div style={{display:"flex",gap:10,alignItems:"center"}}>
-                  <span style={{fontSize:24}}>{g.icon}</span>
-                  <div>
-                    <div style={{fontWeight:700,fontSize:14}}>{g.name}</div>
-                    <div style={{fontSize:12,color:"#475569"}}>יעד: {fmt(g.target)}</div>
-                  </div>
-                </div>
-                <button className="btn btn-d btn-sm"
-                  onClick={()=>setGoals(p=>p.filter(x=>x.id!==g.id))}>✕</button>
-              </div>
-              <div>
-                <div style={{display:"flex",justifyContent:"space-between",marginBottom:6,fontSize:13}}>
-                  <span style={{color:g.color,fontWeight:700}}>{fmt(g.saved)}</span>
-                  <span style={{fontWeight:700,color:g.color}}>{p}%{p>=100?" ✓":""}</span>
-                </div>
-                <div className="pbar">
-                  <div className="pfill" style={{width:`${p}%`,
-                    background:`linear-gradient(90deg,${g.color}88,${g.color})`}}/>
-                </div>
-              </div>
-              <div style={{display:"flex",justifyContent:"space-between",fontSize:12,color:"#475569"}}>
-                <span>נותר: {fmt(Math.max(0,g.target-g.saved))}</span>
-                {p>=100 && <span style={{color:"#34d399",fontWeight:700}}>הושג! 🎉</span>}
-              </div>
-              <button className="btn btn-g btn-sm" style={{width:"100%",textAlign:"center"}}
-                onClick={()=>{setDepId(g.id);setDepAmt("");}}>
-                + הפקד
-              </button>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Deposit modal */}
-      {depId && (
-        <div className="overlay" onClick={()=>setDepId(null)}>
-          <div className="modal" onClick={e=>e.stopPropagation()}>
-            <div className="modal-title">💰 הפקדה למטרה</div>
-            <div className="fg">
-              <label className="lbl">סכום (₪)</label>
-              <input className="inp" type="number" autoFocus placeholder="0"
-                value={depAmt} onChange={e=>setDepAmt(e.target.value)}
-                onKeyDown={e=>e.key==="Enter"&&doDep(depId)}/>
-            </div>
-            <div className="mfoot">
-              <button className="btn btn-g" onClick={()=>setDepId(null)}>ביטול</button>
-              <button className="btn btn-p" onClick={()=>doDep(depId)}>הפקד</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Add goal modal */}
-      {showAdd && (
-        <div className="overlay" onClick={()=>setShowAdd(false)}>
-          <div className="modal" onClick={e=>e.stopPropagation()}>
-            <div className="modal-title">🎯 מטרה חדשה</div>
-            <div className="fg">
-              <label className="lbl">שם המטרה</label>
-              <input className="inp" placeholder="חופשה, רכב..." value={ng.name}
-                onChange={e=>setNg(g=>({...g,name:e.target.value}))}/>
-            </div>
-            <div className="fg">
-              <label className="lbl">יעד (₪)</label>
-              <input className="inp" type="number" placeholder="0" value={ng.target}
-                onChange={e=>setNg(g=>({...g,target:e.target.value}))}/>
-            </div>
-            <div className="fg">
-              <label className="lbl">כבר חסכתי (₪)</label>
-              <input className="inp" type="number" placeholder="0" value={ng.saved}
-                onChange={e=>setNg(g=>({...g,saved:e.target.value}))}/>
-            </div>
-            <div className="fg">
-              <label className="lbl">אייקון</label>
-              <div className="icon-pick" style={{marginTop:6}}>
-                {ICONS_LIST.map(ic => (
-                  <span key={ic} className={ng.icon===ic?"sel":""} onClick={()=>setNg(g=>({...g,icon:ic}))}>{ic}</span>
-                ))}
-              </div>
-            </div>
-            <div className="fg">
-              <label className="lbl">צבע</label>
-              <div className="color-pick" style={{display:"flex",gap:8,marginTop:6}}>
-                {COLORS_LIST.map(c => (
-                  <div key={c} className={ng.color===c?"sel":""} onClick={()=>setNg(g=>({...g,color:c}))}
-                    style={{background:c}}/>
-                ))}
-              </div>
-            </div>
-            <div className="mfoot">
-              <button className="btn btn-g" onClick={()=>setShowAdd(false)}>ביטול</button>
-              <button className="btn btn-p" onClick={addGoal}>צור מטרה</button>
-            </div>
-          </div>
-        </div>
-      )}
+  document.getElementById("screen-dashboard").innerHTML=`
+    <div class="sec">סיכום ${MONTHS[new Date().getMonth()]} ${new Date().getFullYear()}</div>
+    <div class="g3">
+      <div class="card"><div class="ct">הכנסה חודשית</div><div class="cv green">${fmt(income)}</div><div class="cs">נטו לאחר מס</div></div>
+      <div class="card"><div class="ct">הוצאות החודש</div><div class="cv red">${fmt(total)}</div><div class="cs">${mExp.length} עסקאות</div></div>
+      <div class="card"><div class="ct">נחסך החודש</div><div class="cv green">${fmt(saved)}</div><div class="cs">${pct}% מההכנסה</div></div>
     </div>
-  );
+    <div class="g2">
+      <div class="card"><div class="ct">הוצאות לפי קטגוריה</div>${catHtml}</div>
+      <div class="card"><div class="ct">מטרות — התקדמות</div>${goalsHtml}</div>
+    </div>`;
 }
 
-// ════════════════════════════════════════
-// REPORT
-// ════════════════════════════════════════
-function Report({expenses, income}) {
-  const months = [...new Set([nowMonth(), ...expenses.map(e=>e.month)])].sort().reverse();
-  const [sel, setSel] = useState(months[0] || nowMonth());
+// ── EXPENSES ──
+function renderExpenses(){
+  const months=[...new Set([nowM(),...expenses.map(e=>e.month)])].sort().reverse();
+  const mExp=expenses.filter(e=>e.month===filterMonth);
+  const filtered=filterCat==="הכל"?mExp:mExp.filter(e=>e.cat===filterCat);
+  const total=filtered.reduce((s,e)=>s+e.amount,0);
 
-  const mExp = expenses.filter(e => e.month === sel);
-  const total = mExp.reduce((s,e) => s + Number(e.amount), 0);
-  const inc = Number(income) || 0;
-  const saved = Math.max(0, inc - total);
-  const pct = inc > 0 ? Math.round((saved/inc)*100) : 0;
-  const [y,mo] = sel.split("-");
-  const ml = MONTHS[parseInt(mo)-1] + " " + y;
+  const monthOpts=months.map(m=>{const[y,mo]=m.split("-");return`<option value="${m}"${m===filterMonth?" selected":""}>${MONTHS[parseInt(mo)-1]} ${y}</option>`;}).join("");
+  const catChips=["הכל",...CATS.map(c=>c.n)].map(cat=>`<button class="chip${filterCat===cat?" on":""}" onclick="setFilterCat('${cat}')">${cat!=="הכל"?catI(cat):""} ${cat}</button>`).join("");
 
-  const byCat = CATS
-    .map(c => ({name:c.n, value:mExp.filter(e=>e.category===c.n).reduce((s,e)=>s+Number(e.amount),0), color:c.c, icon:c.i}))
-    .filter(c => c.value > 0)
-    .sort((a,b) => b.value - a.value);
+  const rows=filtered.length===0?`<tr><td colspan="5" class="empty">אין הוצאות</td></tr>`:
+    filtered.sort((a,b)=>b.date.localeCompare(a.date)).map(e=>`
+      <tr>
+        <td style="color:#475569;font-size:13px;">${e.date.slice(5).split("-").reverse().join("/")}</td>
+        <td style="font-weight:500;">${e.desc}</td>
+        <td><span class="badge" style="background:${catC(e.cat)}22;color:${catC(e.cat)};">${catI(e.cat)} ${e.cat}</span></td>
+        <td style="font-weight:700;color:#fb7185;">${fmt(e.amount)}</td>
+        <td><button class="btn-d" onclick="delExp(${e.id})">✕</button></td>
+      </tr>`).join("")+`
+      <tr><td colspan="3" style="font-weight:700;color:#64748b;padding-top:12px;">סה"כ</td><td style="font-weight:800;font-size:15px;color:#fb7185;padding-top:12px;">${fmt(total)}</td><td></td></tr>`;
 
-  const trend = months.slice(0,6).reverse().map(m => {
-    const [y2,mo2] = m.split("-");
-    const exp = expenses.filter(e=>e.month===m).reduce((s,e)=>s+Number(e.amount),0);
-    return {month: MONTHS[parseInt(mo2)-1].slice(0,3), הוצאות:exp, חיסכון:Math.max(0,inc-exp)};
+  document.getElementById("screen-expenses").innerHTML=`
+    <div class="card" style="border:1px solid rgba(56,189,248,0.2);margin-bottom:20px;">
+      <div class="sec" style="margin-bottom:14px;">הוסף הוצאה</div>
+      <div class="fgrid">
+        <div><label class="lbl">תאריך</label><input class="inp" type="date" id="eDate" value="${today()}"/></div>
+        <div><label class="lbl">תיאור</label><input class="inp" type="text" id="eDesc" placeholder="סופרמרקט..."/></div>
+        <div><label class="lbl">קטגוריה</label><select class="inp" id="eCat">${CATS.map(c=>`<option value="${c.n}">${c.i} ${c.n}</option>`).join("")}</select></div>
+        <div><label class="lbl">סכום ₪</label><input class="inp" type="number" id="eAmt" placeholder="0" onkeydown="if(event.key==='Enter')addExp()"/></div>
+        <button class="btn-p" onclick="addExp()" style="height:42px;">+ הוסף</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
+      <select class="inp" style="width:auto;min-width:130px;" onchange="setFilterMonth(this.value)">${monthOpts}</select>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">${catChips}</div>
+    </div>
+    <div class="card">
+      <table class="tbl">
+        <thead><tr><th>תאריך</th><th>תיאור</th><th>קטגוריה</th><th>סכום</th><th></th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+function addExp(){
+  const d=document.getElementById("eDate").value;
+  const desc=document.getElementById("eDesc").value.trim();
+  const cat=document.getElementById("eCat").value;
+  const amt=parseFloat(document.getElementById("eAmt").value);
+  if(!desc||!amt||isNaN(amt))return;
+  expenses.push({id:Date.now(),date:d,desc,cat,amount:amt,month:d.slice(0,7)});
+  save("kc_exp",expenses);
+  document.getElementById("eDesc").value="";
+  document.getElementById("eAmt").value="";
+  renderAll();
+}
+
+function delExp(id){expenses=expenses.filter(e=>e.id!==id);save("kc_exp",expenses);renderAll();}
+function setFilterMonth(v){filterMonth=v;renderExpenses();}
+function setFilterCat(v){filterCat=v;renderExpenses();}
+
+// ── GOALS ──
+function renderGoals(){
+  const ts=goals.reduce((s,g)=>s+g.saved,0), tt=goals.reduce((s,g)=>s+g.target,0);
+  const cards=goals.map(g=>{
+    const p=Math.min(100,Math.round((g.saved/g.target)*100));
+    return `<div class="gc">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span style="font-size:24px;">${g.icon}</span>
+          <div><div style="font-weight:700;font-size:14px;">${g.name}</div><div style="font-size:12px;color:#475569;">יעד: ${fmt(g.target)}</div></div>
+        </div>
+        <button class="btn-d" onclick="delGoal(${g.id})">✕</button>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;">
+          <span style="color:${g.color};font-weight:700;">${fmt(g.saved)}</span>
+          <span style="font-weight:700;color:${g.color};">${p}%${p>=100?" ✓":""}</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:${p}%;background:${g.color};"></div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:#475569;">
+        <span>נותר: ${fmt(Math.max(0,g.target-g.saved))}</span>
+        ${p>=100?'<span style="color:#34d399;font-weight:700;">הושג! 🎉</span>':""}
+      </div>
+      <button class="btn-g btn-sm" style="width:100%;text-align:center;" onclick="openDeposit(${g.id})">+ הפקד</button>
+    </div>`;}).join("");
+
+  document.getElementById("screen-goals").innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <div>
+        <div style="font-size:12px;color:#64748b;margin-bottom:3px;">סה"כ נחסך</div>
+        <div style="font-size:20px;font-weight:800;color:#34d399;">${fmt(ts)} <span style="font-size:13px;color:#475569;font-weight:400;">מתוך ${fmt(tt)}</span></div>
+      </div>
+      <button class="btn-p" onclick="openAddGoal()">+ מטרה חדשה</button>
+    </div>
+    <div class="goals-grid">${cards}</div>`;
+}
+
+function delGoal(id){goals=goals.filter(g=>g.id!==id);save("kc_goals",goals);renderGoals();}
+
+function openDeposit(id){
+  const g=goals.find(x=>x.id===id);
+  document.getElementById("modal-content").innerHTML=`
+    <div style="font-size:18px;font-weight:700;margin-bottom:18px;">💰 הפקדה — ${g.name}</div>
+    <div class="fg"><label class="lbl">סכום (₪)</label><input class="inp" id="depAmt" type="number" autofocus placeholder="0" onkeydown="if(event.key==='Enter')doDeposit(${id})"/></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px;">
+      <button class="btn-g" onclick="closeModal()">ביטול</button>
+      <button class="btn-p" onclick="doDeposit(${id})">הפקד</button>
+    </div>`;
+  document.getElementById("modal-overlay").style.display="flex";
+  setTimeout(()=>document.getElementById("depAmt")?.focus(),50);
+}
+
+function doDeposit(id){
+  const amt=parseFloat(document.getElementById("depAmt").value);
+  if(!amt||isNaN(amt))return;
+  goals=goals.map(g=>g.id===id?{...g,saved:g.saved+amt}:g);
+  save("kc_goals",goals);closeModal();renderGoals();
+}
+
+function openAddGoal(){
+  document.getElementById("modal-content").innerHTML=`
+    <div style="font-size:18px;font-weight:700;margin-bottom:18px;">🎯 מטרה חדשה</div>
+    <div class="fg"><label class="lbl">שם המטרה</label><input class="inp" id="gName" placeholder="חופשה, רכב..."/></div>
+    <div class="fg"><label class="lbl">יעד (₪)</label><input class="inp" id="gTarget" type="number" placeholder="0"/></div>
+    <div class="fg"><label class="lbl">כבר חסכתי (₪)</label><input class="inp" id="gSaved" type="number" placeholder="0" value="0"/></div>
+    <div class="fg"><label class="lbl">אייקון</label>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;" id="iconPicker">
+        ${ICONS.map(ic=>`<span onclick="pickIcon('${ic}')" id="icon-${ic}" style="font-size:20px;cursor:pointer;padding:5px;border-radius:8px;background:transparent;">${ic}</span>`).join("")}
+      </div>
+    </div>
+    <div class="fg"><label class="lbl">צבע</label>
+      <div style="display:flex;gap:8px;margin-top:4px;">
+        ${COLS.map(c=>`<div onclick="pickColor('${c}')" id="col-${c.replace('#','')}" style="width:26px;height:26px;border-radius:50%;background:${c};cursor:pointer;"></div>`).join("")}
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px;">
+      <button class="btn-g" onclick="closeModal()">ביטול</button>
+      <button class="btn-p" onclick="doAddGoal()">צור מטרה</button>
+    </div>`;
+  window._pickedIcon="🎯"; window._pickedColor="#38bdf8";
+  pickIcon("🎯"); pickColor("#38bdf8");
+  document.getElementById("modal-overlay").style.display="flex";
+}
+
+function pickIcon(ic){
+  document.querySelectorAll("#iconPicker span").forEach(s=>s.style.background="transparent");
+  const el=document.getElementById("icon-"+ic);
+  if(el){el.style.background="rgba(56,189,248,0.2)";el.style.outline="1px solid #38bdf8";}
+  window._pickedIcon=ic;
+}
+function pickColor(c){
+  document.querySelectorAll("[id^='col-']").forEach(el=>el.style.outline="none");
+  const el=document.getElementById("col-"+c.replace("#",""));
+  if(el)el.style.outline="3px solid white";
+  window._pickedColor=c;
+}
+function doAddGoal(){
+  const name=document.getElementById("gName").value.trim();
+  const target=parseFloat(document.getElementById("gTarget").value);
+  const saved=parseFloat(document.getElementById("gSaved").value)||0;
+  if(!name||!target)return;
+  goals.push({id:Date.now(),name,target,saved,icon:window._pickedIcon||"🎯",color:window._pickedColor||"#38bdf8"});
+  save("kc_goals",goals);closeModal();renderGoals();
+}
+
+function closeModal(){document.getElementById("modal-overlay").style.display="none";}
+
+// ── REPORT ──
+function renderReport(){
+  const months=[...new Set([nowM(),...expenses.map(e=>e.month)])].sort().reverse();
+  const selMonth=window._reportMonth||months[0]||nowM();
+  window._reportMonth=selMonth;
+  const mExp=expenses.filter(e=>e.month===selMonth);
+  const total=mExp.reduce((s,e)=>s+e.amount,0);
+  const saved=Math.max(0,income-total);
+  const pct=income>0?Math.round((saved/income)*100):0;
+  const [y,mo]=selMonth.split("-");
+  const ml=MONTHS[parseInt(mo)-1]+" "+y;
+
+  const byCat=CATS.map(c=>({name:c.n,value:mExp.filter(e=>e.cat===c.n).reduce((s,e)=>s+e.amount,0),color:c.c,icon:c.i})).filter(c=>c.value>0).sort((a,b)=>b.value-a.value);
+  const trend=months.slice(0,6).reverse().map(m=>{
+    const[y2,mo2]=m.split("-");
+    const exp=expenses.filter(e=>e.month===m).reduce((s,e)=>s+e.amount,0);
+    return{label:MONTHS[parseInt(mo2)-1].slice(0,3),exp,sav:Math.max(0,income-exp)};
   });
 
-  return (
-    <div>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}}>
-        <div className="sec" style={{marginBottom:0}}>דוח חודשי</div>
-        <select className="inp" value={sel} onChange={e=>setSel(e.target.value)} style={{width:"auto",minWidth:150}}>
-          {months.map(m => {
-            const [y2,mo2] = m.split("-");
-            return <option key={m} value={m}>{MONTHS[parseInt(mo2)-1]} {y2}</option>;
-          })}
-        </select>
-      </div>
+  const monthOpts=months.map(m=>{const[y2,mo2]=m.split("-");return`<option value="${m}"${m===selMonth?" selected":""}>${MONTHS[parseInt(mo2)-1]} ${y2}</option>`;}).join("");
+  const detailRows=byCat.map(c=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <span style="display:flex;align-items:center;gap:7px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:${c.color};display:inline-block;flex-shrink:0;"></span>${c.icon} ${c.name}</span>
+      <div style="text-align:left;"><div style="font-weight:700;color:${c.color};">${fmt(c.value)}</div><div style="font-size:11px;color:#475569;">${total>0?Math.round((c.value/total)*100):0}%</div></div>
+    </div>`).join("");
 
-      <div className="g3" style={{marginBottom:16}}>
-        <div className="card"><div className="ct">הכנסה</div><div className="cv green">{fmt(inc)}</div></div>
-        <div className="card"><div className="ct">הוצאות</div><div className="cv red">{fmt(total)}</div><div className="cs">{mExp.length} עסקאות</div></div>
-        <div className="card"><div className="ct">חיסכון</div><div className="cv green">{fmt(saved)}</div><div className="cs">{pct}%</div></div>
-      </div>
+  const tip=saved>0
+    ?`החודש חסכת ${fmt(saved)}, שזה ${pct}% מהכנסתך. ${pct>=20?"🎉 מצוין! עמדת ביעד 20%+":pct>=10?"👍 לא רע — שאף ל-20%":"⚠️ כדאי לבחון קיצוצים."}`
+    :`⚠️ ההוצאות עלו על ההכנסה ב-${fmt(Math.abs(saved))}.`;
 
-      <div className="g2" style={{marginBottom:16}}>
-        <div className="card">
-          <div className="ct" style={{marginBottom:12}}>התפלגות קטגוריות</div>
-          {byCat.length > 0 ? (
-            <div className="chart-wrap">
-              <ResponsiveContainer width="100%" height={180}>
-                <PieChart>
-                  <Pie data={byCat} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} innerRadius={40}>
-                    {byCat.map((c,i) => <Cell key={i} fill={c.color}/>)}
-                  </Pie>
-                  <Tooltip formatter={v=>fmt(v)} contentStyle={ttStyle}/>
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          ) : <div className="empty"><div className="ei">📊</div><p>אין נתונים</p></div>}
-        </div>
-        <div className="card">
-          <div className="ct" style={{marginBottom:10}}>פירוט</div>
-          {byCat.map(c => (
-            <div key={c.name} className="srow">
-              <span style={{display:"flex",alignItems:"center",gap:7,fontSize:13}}>
-                <span style={{width:8,height:8,borderRadius:"50%",background:c.color,flexShrink:0}}/>
-                {c.icon} {c.name}
-              </span>
-              <div style={{textAlign:"left"}}>
-                <div style={{fontWeight:700,color:c.color}}>{fmt(c.value)}</div>
-                <div style={{fontSize:11,color:"#475569"}}>{total>0?Math.round((c.value/total)*100):0}%</div>
-              </div>
-            </div>
-          ))}
-        </div>
+  document.getElementById("screen-report").innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <div class="sec" style="margin-bottom:0;">דוח חודשי</div>
+      <select class="inp" style="width:auto;min-width:150px;" onchange="setReportMonth(this.value)">${monthOpts}</select>
+    </div>
+    <div class="g3">
+      <div class="card"><div class="ct">הכנסה</div><div class="cv green">${fmt(income)}</div></div>
+      <div class="card"><div class="ct">הוצאות</div><div class="cv red">${fmt(total)}</div><div class="cs">${mExp.length} עסקאות</div></div>
+      <div class="card"><div class="ct">חיסכון</div><div class="cv green">${fmt(saved)}</div><div class="cs">${pct}%</div></div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="ct" style="margin-bottom:12px;">התפלגות קטגוריות</div>
+        ${byCat.length>0?`<canvas id="pieChart" height="180"></canvas>`:`<div class="empty">אין נתונים</div>`}
       </div>
-
-      <div className="card" style={{marginBottom:16}}>
-        <div className="ct" style={{marginBottom:12}}>מגמה — 6 חודשים אחרונים</div>
-        <div className="chart-wrap">
-          <ResponsiveContainer width="100%" height={180}>
-            <BarChart data={trend} barGap={4}>
-              <XAxis dataKey="month" tick={{fill:"#475569",fontSize:12}} axisLine={false} tickLine={false}/>
-              <YAxis tick={{fill:"#475569",fontSize:11}} axisLine={false} tickLine={false}
-                tickFormatter={v=>"₪"+(v/1000).toFixed(0)+"k"}/>
-              <Tooltip formatter={v=>fmt(v)} contentStyle={ttStyle}/>
-              <Legend/>
-              <Bar dataKey="הוצאות" fill="#fb7185" radius={[4,4,0,0]}/>
-              <Bar dataKey="חיסכון" fill="#34d399" radius={[4,4,0,0]}/>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className="sumbox">
-        <div className="sumbox-t">📋 סיכום {ml}</div>
-        <p style={{fontSize:14,lineHeight:1.9,color:"#94a3b8"}}>
-          {saved > 0
-            ? `החודש חסכת ${fmt(saved)}, שזה ${pct}% מהכנסתך. ${pct>=20?"🎉 מצוין! עומד ביעד 20%+":pct>=10?"👍 לא רע — שאף ל-20%":"⚠️ כדאי לבחון קיצוצים."}`
-            : `⚠️ ההוצאות עלו על ההכנסה ב-${fmt(Math.abs(saved))}.`
-          }
-          {byCat[0] && ` הוצאה גדולה: ${byCat[0].icon} ${byCat[0].name} — ${fmt(byCat[0].value)}.`}
-        </p>
+      <div class="card">
+        <div class="ct" style="margin-bottom:10px;">פירוט</div>
+        ${detailRows||'<div class="empty">אין נתונים</div>'}
       </div>
     </div>
-  );
-}
-
-// ════════════════════════════════════════
-// ROOT APP
-// ════════════════════════════════════════
-function App() {
-  const [tab, setTab] = useState("dashboard");
-  const [expenses, setExpenses] = useLS("kc_exp_v4",  EXP0);
-  const [goals,    setGoals]    = useLS("kc_goals_v4", GOALS0);
-  const [income,   setIncome]   = useLS("kc_income_v4","10000");
-
-  const now = new Date();
-  const ml = MONTHS[now.getMonth()] + " " + now.getFullYear();
-
-  const TABS = [
-    {id:"dashboard", label:"דשבורד",    icon:"▦"},
-    {id:"expenses",  label:"הוצאות",    icon:"🧾"},
-    {id:"goals",     label:"מטרות",     icon:"🎯"},
-    {id:"report",    label:"דוח חודשי", icon:"📊"},
-  ];
-
-  return (
-    <div className="app" dir="rtl">
-      <div className="header">
-        <div className="header-top">
-          <div className="logo">כסף<span>חכם</span></div>
-          <div className="income-row">
-            <span className="income-lbl">הכנסה חודשית:</span>
-            <input className="inp" type="number" value={income}
-              onChange={e=>setIncome(e.target.value)}
-              style={{width:120,fontSize:13,padding:"6px 10px"}}/>
-            <div className="month-badge">📅 {ml}</div>
-          </div>
-        </div>
-        <div className="tabs">
-          {TABS.map(t => (
-            <button key={t.id} className={`tab ${tab===t.id?"active":""}`}
-              onClick={()=>setTab(t.id)}>
-              {t.icon} {t.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="content">
-        {tab === "dashboard" && <Dashboard expenses={expenses} goals={goals} income={income}/>}
-        {tab === "expenses"  && <Expenses  expenses={expenses} setExpenses={setExpenses}/>}
-        {tab === "goals"     && <Goals     goals={goals}       setGoals={setGoals}/>}
-        {tab === "report"    && <Report    expenses={expenses} income={income}/>}
-      </div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="ct" style="margin-bottom:12px;">מגמה — 6 חודשים</div>
+      <canvas id="barChart" height="160"></canvas>
     </div>
-  );
-}
+    <div class="sumbox">
+      <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:8px;">📋 סיכום ${ml}</div>
+      <p style="font-size:14px;line-height:1.9;color:#94a3b8;">${tip}${byCat[0]?` הוצאה גדולה: ${byCat[0].icon} ${byCat[0].name} — ${fmt(byCat[0].value)}.`:""}</p>
+    </div>`;
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+  // Pie chart
+  if(byCat.length>0){
+    const ctx=document.getElementById("pieChart")?.getContext("2d");
+    if(ctx){
+      if(chartPie){chartPie.destroy();chartPie=null;}
+      chartPie=new Chart(ctx,{type:"doughnut",data:{labels:byCat.map(c=>c.name),datasets:[{data:byCat.map(c=>c.value),backgroundColor:byCat.map(c=>c.color),borderWidth:0}]},options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>" "+fmt(ctx.raw)}}},cutout:"55%"}});
+    }
+  }
+  // Bar chart
+  const ctx2=document.getElementById("barChart")?.getContext("2d");
+  if(ctx2){
+    if(chartBar){chartBar.destroy();chartBar=null;}
+    chartBar=new Chart(ctx2,{type:"bar",data:{
+      labels:trend.map(t=>t.label),
+      datasets:[
+        {label:"הוצאות",data:trend.map(t=>t.exp),backgroundColor:"#fb7185",borderRadius:4},
+        {label:"חיסכון",data:trend.map(t=>t.sav),backgroundColor:"#34d399",borderRadius:4}
+      ]
+    },options:{plugins:{legend:{labels:{color:"#94a3b8",font:{family:"Heebo"}}}},scales:{x:{ticks:{color:"#475569"},grid:{display:false}},y:{ticks:{color:"#475569",callback:v=>"₪"+(v/1000).toFixed(0)+"k"},grid:{color:"rgba(255,255,255,0.04)"}}}}});
+  }
+}
+function setReportMonth(v){window._reportMonth=v;renderReport();}
 </script>
 </body>
 </html>
